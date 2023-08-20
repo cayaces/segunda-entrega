@@ -2,19 +2,31 @@ import './App.css';
 import NavBar from './components/NavBar/NavBar';
 import ItemListContainer from './components/ItemListContainer/ItemListContainer';
 import ItemDetailContainer from './components/ItemDetailContainer/ItemDetailContainer';
-
-import ItemCount from './components/ItemCount/ItemCount';
+import Cart from './components/Cart/Cart'
+import Checkout from './components/Checkout/Checkout';
+import { BrowserRouter, Routes, Route } from 'react-router-dom';
+import { CartProvider } from './context/CartContext';
 
 function App() {
-  return (
+ return (
     <div className="App">
-     <NavBar />
-     <ItemListContainer greeting="Bienvenidos" />
-     <ItemDetailContainer />
-
-     <ItemCount initial={1} stock={10} onAdd={(quantity) => console.log('cantidad agregada', quantity)}/>
+      
+      <BrowserRouter>
+      <CartProvider>
+        <NavBar />
+        <Routes>
+          <Route path='/' element={<ItemListContainer greeting={'Tesoritos B&S'} />} />
+          <Route path='/category/:categoryId' element={<ItemListContainer greeting={'Productos por categoria'} />} />
+          <Route path='/item/:itemId' element={<ItemDetailContainer />} />
+          <Route path='/cart' element={<Cart />} />
+          <Route path='/checkout' element={<Checkout />} />
+          <Route path='*' element={<h1>404 NOT FOUND</h1>} />
+        </Routes>
+        </CartProvider>
+      </BrowserRouter>
+      
     </div>
-  );
+ );
 }
 
 export default App;
