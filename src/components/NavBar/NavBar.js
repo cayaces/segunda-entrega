@@ -5,19 +5,32 @@ import { NavLink, Link } from 'react-router-dom'
 
 const NavBar = () => {
     return (
-        <nav className="NavBar">
+        <header className="NavBar">
             <Link to='/'>
-                <div>
-                    <img src={logo} alt="logo" />
-                </div>
+                <img src={logo} alt="logo" />
             </Link>
-            <div className='Categories'>
-                <NavLink to={"/category/juguetes"} className={({ isActive }) => isActive ? 'ActiveOption' : 'Option'}>Juguetes</NavLink>
-                <NavLink to={"/category/masitas"} className={({ isActive }) => isActive ? 'ActiveOption' : 'Option'}>Masitas</NavLink>
-                <NavLink to={"/category/organizacion"} className={({ isActive }) => isActive ? 'ActiveOption' : 'Option'}>Organizacion</NavLink>
-            </div>
+
+            <nav className='nav'>
+                <ul>
+                   <li>
+                        <NavLink to="/category/juguetes" className={({ isActive }) => isActive ? 'ActiveOption' : 'Option'}>
+                            Juguetes
+                        </NavLink>
+                    </li>
+                    <li>
+                        <NavLink to="/category/masitas" className={({ isActive }) => isActive ? 'ActiveOption' : 'Option'}>
+                            Masitas
+                        </NavLink>
+                    </li>
+                    <li>
+                        <NavLink to="/category/organizacion" className={({ isActive }) => isActive ? 'ActiveOption' : 'Option'}>
+                            Organizacion
+                        </NavLink>
+                    </li>
+               </ul>
+            </nav>
             < CartWidget />
-        </nav>
+        </header>
     )
 }
 

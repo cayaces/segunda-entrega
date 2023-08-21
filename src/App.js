@@ -8,25 +8,25 @@ import { BrowserRouter, Routes, Route } from 'react-router-dom';
 import { CartProvider } from './context/CartContext';
 
 function App() {
- return (
+  return (
     <div className="App">
-      
+
       <BrowserRouter>
-      <CartProvider>
-        <NavBar />
-        <Routes>
-          <Route path='/' element={<ItemListContainer greeting={'Tesoritos B&S'} />} />
-          <Route path='/category/:categoryId' element={<ItemListContainer greeting={'Productos por categoria'} />} />
-          <Route path='/item/:itemId' element={<ItemDetailContainer />} />
-          <Route path='/cart' element={<Cart />} />
-          <Route path='/checkout' element={<Checkout />} />
-          <Route path='*' element={<h1>404 NOT FOUND</h1>} />
-        </Routes>
+        <CartProvider>
+          <NavBar />
+          <Routes>
+            <Route path='/' element={<ItemListContainer greeting={'Bienvenidos a Tesoritos B&S'} />} />
+            <Route path='/category/:categoryId' element={<ItemListContainer greeting={'Productos por categoria'} />} />
+            <Route path='/item/:itemId' element={<ItemDetailContainer />} />
+            <Route path='/cart' element={<Cart />} />
+            <Route path='/checkout' element={<Checkout />} />
+            <Route path='*' element={<h1>404: Estamos trabajando para ud...</h1>} />
+          </Routes>
         </CartProvider>
       </BrowserRouter>
-      
+
     </div>
- );
+  );
 }
 
 export default App;

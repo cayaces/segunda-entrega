@@ -4,7 +4,6 @@ import { db } from '../../services/firebase/firebaseConfig'
 import ItemList from '../ItemList/ItemList'
 import { useParams, Link } from 'react-router-dom'
 import { getProducts, getProductsByCategory, } from '../../asyncMock'
-
 import ItemDetailContainer from '../ItemDetailContainer/ItemDetailContainer';
 <Link to={`./ItemDetailContainer/${ItemDetailContainer}`}>Ver detalles</Link>
 
