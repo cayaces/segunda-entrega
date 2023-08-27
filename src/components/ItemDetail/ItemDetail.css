@@ -1,0 +1,52 @@
+/* Estilos para el contenedor del detalle del producto */
+.contenedorItem {
+    border: 1px solid #ddd;
+    padding: 20px;
+    margin: 10px;
+    width: 300px;
+    text-align: center;
+    background-color: #f0f8ff; /* Color azul pastel */
+    border-radius: 10px;
+    box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.1);
+  }
+  
+  /* Estilos para los títulos del detalle del producto */
+  .contenedorItem h2,
+  .contenedorItem h3 {
+    font-size: 1.5rem;
+    margin: 10px 0;
+    color: #ff69b4; /* Color rosa pastel */
+  }
+  
+  /* Estilos para la información y descripción */
+  .contenedorItem p.Info {
+    font-size: 1rem;
+    color: #4d4d4d; /* Color gris */
+    margin: 5px 0;
+  }
+  
+  /* Estilos para la imagen del producto */
+  .contenedorItem .ItemImg {
+    max-width: 100%;
+    height: auto;
+    margin-top: 10px;
+    border: 1px solid #ccc;
+    border-radius: 6px;
+  }
+  
+  /* Estilos para el enlace de terminar compra o el contador */
+  .contenedorItem a {
+    display: inline-block;
+    background-color: #ffb6c1; /* Color rosa pastel */
+    color: #fff;
+    text-decoration: none;
+    padding: 8px 16px;
+    border-radius: 4px;
+    margin-top: 10px;
+    transition: background-color 0.3s ease;
+  }
+  
+  .contenedorItem a:hover {
+    background-color: #ff69b4; /* Color rosa pastel más oscuro al pasar el cursor */
+  }
+  

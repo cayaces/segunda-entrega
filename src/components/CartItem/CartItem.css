@@ -1,9 +1,46 @@
-.itemsCarrito {
-    display: flex;
-    flex-direction: row;
-    align-items: center;
-    justify-content: space-around;
-    background-color: #09bc8a;
-    padding: 1rem;
-    margin: 1rem;
-}
+/* Estilos para el contenedor de producto en el carrito */
+.cart-product {
+    border: 1px solid #ccc;
+    padding: 10px;
+    margin: 10px;
+    background-color: #f5f5f5;
+    border-radius: 8px;
+    box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.1);
+  }
+  
+  /* Estilos para el nombre del producto */
+  .cart-product h4 {
+    font-size: 1.2rem;
+    color: #ff69b4; /* Color rosa pastel */
+    margin-bottom: 5px;
+  }
+  
+  /* Estilos para la cantidad y el precio */
+  .cart-product p {
+    font-size: 1rem;
+    color: #4d4d4d; /* Color gris */
+    margin: 3px 0;
+  }
+  
+  /* Estilos para el botón de eliminar */
+  .cart-product button {
+    background-color: #ffb6c1; /* Color rosa pastel */
+    color: #fff;
+    border: none;
+    border-radius: 4px;
+    padding: 5px 10px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+  }
+  
+  .cart-product button:hover {
+    background-color: #ff69b4; /* Color rosa pastel más oscuro al pasar el cursor */
+  }
+  
+  /* Estilos para la línea divisoria */
+  .cart-product hr {
+    border: none;
+    border-top: 1px solid #ccc;
+    margin: 10px 0;
+  }
+  

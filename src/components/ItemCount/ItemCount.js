@@ -1,33 +1,30 @@
 import './ItemCount.css'
 import { useState } from 'react'
 
-const ItemCount = ({stock, initial, onAdd})=> {
-    const [quantity, setQuantity] = useState(initial)
+const ItemCount = ({inicial, stock, funcionAgregar})=> {
+    const [contador, setContador] = useState(inicial);
 
-    const increment = () => {
-        if(quantity < stock) {
-            setQuantity(quantity + 1)
+    const incrementar = () => {
+        if(contador < stock) {
+            setContador(contador + 1);
         }
-    }
+    };
 
-    const decrement = () => {
-        if(quantity > 1) {
-            setQuantity(quantity - 1)
+    const decrementar = () => {
+        if(contador > inicial) {
+            setContador(contador - 1);
         }
-    }
+    };
 
     return(
-        <div className='Counter'>
-            <div className='Controls'>
-               <button className="Button" onClick={decrement}>-</button>
-               <h4 className='Number'>{quantity}</h4>
-               <button className="Button" onClick={increment}>+</button>
-            </div>
-             <div>
-               <button className="Button" onClick={() => onAdd(quantity)} disabled={!stock}>Agregar a la Bolsa
-               </button>
-             </div>
+        <>
+        <div>
+            <button className='btnMenos' onClick={decrementar}> - </button>
+            <p className='contador'> {contador} </p>
+            <button className='btnMas' onClick={incrementar}> + </button>
         </div>
+        <button className='btnAgregar' onClick={()=> funcionAgregar(contador)}>Agregar Al Carrito</button>
+        </>
     )
 }
 

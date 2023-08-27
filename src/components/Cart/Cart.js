@@ -1,43 +1,28 @@
 import './Cart.css'
-import { useContext } from "react"
-import { CartContext } from '../../context/CartContext'
-import CartItem from '../CartItem/CartItem'
-import { Link } from 'react-router-dom'
+import { useContext } from "react";
+import { CartContext } from "../../context/CartContext";
+import CartItem from "../CartItem/CartItem";
+import { Link } from "react-router-dom";
 
 const Cart = () => {
-    const { cart, clearCart, totalQuantity, total } = useContext(CartContext)
+    const { cart, vaciarCarrito, total, cantidadTotal } = useContext(CartContext);
 
-    if (totalQuantity === 0) {
+    if (cantidadTotal === 0) {
         return (
             <>
-                <div>
-                    <h1>No hay productos en el carrito</h1>
-                    <Link to='/' className='Option'>Ver Productos</Link>
-                </div>
+                <h2 className='tituloH2'>No tienes productos en el carrito</h2>
+                <Link className="miBtn" to="/"> Ver Productos </Link>
             </>
         )
     }
 
     return (
         <div>
-            {cart.map(p => <CartItem key={p.id} {...p} />)}
-
-            <div className="pago carrito">
-
-                <h3>Total: ${total}</h3>
-                <h3>Cantidad Total: {totalQuantity}</h3>
-
-                <button className="Button" onClick={() => clearCart()}>
-                    Limpiar Carrito
-                </button>
-                <br />
-                
-                <Link to='/checkout' className='Option'>
-                    <br />
-                    <button className="button">Finalizar Compra</button>
-                    <br />
-                </Link>
-            </div>
+            {cart.map((product => <CartItem key={product.id} {...product} />))}
+            <h3 className='total'> Total: ${total} </h3>
+            <h3 className='cantTotal'> Cantidad total: {cantidadTotal} </h3>
+            <button className="miBtn" onClick={() => vaciarCarrito()}> Vaciar Carrito </button>
+            <Link className="miBtn" to="/checkout"> Finalizar Compra </Link>
         </div>
     )
 }

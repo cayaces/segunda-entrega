@@ -1,56 +1,36 @@
-import './ItemDetail.css'
-import { useContext, useState } from 'react'
-import ItemCount from '../ItemCount/ItemCount'
-import { Link } from 'react-router-dom'
+import { useState } from 'react';
+import ItemCount from '../ItemCount/ItemCount';
+import { Link } from 'react-router-dom';
+import './ItemDetail.css';
+import { CartContext } from '../../context/CartContext';
+import { useContext } from 'react';
 
-import { CartContext } from '../../context/CartContext'
+const ItemDetail = ({ id, nombre, img, categoria, descripcion, precio, stock }) => {
+    const [agregarCantidad, setAgregarCantidad] = useState(0);
 
-const ItemDetail = ({ id, nombre, img, categoria, descripcion, precio, stock}) => {
-    const [quantityAdded, setQuantityAdded] = useState(0)
+    const { agregarProducto } = useContext(CartContext);
 
-    const { addItem } = useContext(CartContext)
+    const manejadorCantidad = (cantidad) => {
+        setAgregarCantidad(cantidad);
+        //console.log("Productos agregados: " + cantidad);
 
-    const handleOnAdd = (quantity) => {
-        setQuantityAdded(quantity)
-
-        const item = {
-            id, nombre, precio
-        }
-
-        addItem(item, quantity)
+        const item = {id, nombre, precio};
+        agregarProducto(item, cantidad);
     }
 
     return (
-        <article className="CardItem">
-            <header className="Header">
-                <h2 className="ItemHeader">
-                    {nombre}
-                </h2>
-            </header>
-            <picture>
-                <img src={img} alt={nombre} className="ItemImg"/>
-            </picture>
-            <section>
-                <p className="Info">
-                    Categoria: {categoria}
-                </p>
-                <p className="Info">
-                    Desscripcion: {descripcion}
-                </p>
-                <p className="Info">
-                    Precio: ${precio}
-                </p>
-            </section>
-            <footer className='ItemFooter'>
-                {
-                    quantityAdded > 0 ? (
-                        <Link to='/cart' className='Option'>Terminar compra</Link>
-                    ) : (
-                        <ItemCount initial={1} stock={stock} onAdd={handleOnAdd}/>
-                    )
-                }
-            </footer>
-        </article>
+        <div className="contenedorItem">
+            <h2>Nombre: {nombre} </h2>
+            <h3 className="Info">Precio: ${precio}</h3>
+            <h3>ID: {id} </h3>
+            <p className="Info"> Descripcion: {descripcion}</p>
+            <img src={img} alt={nombre} className="ItemImg" />
+            <p className="Info">Categoria: {categoria}</p>
+
+            {
+                agregarCantidad > 0 ? (<Link to="/cart"> Terminar Compra </Link>) : (<ItemCount inicial={1} stock={stock} funcionAgregar={manejadorCantidad} />)
+            }
+        </div>
     )
 }
 

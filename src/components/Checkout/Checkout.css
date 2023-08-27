@@ -1,0 +1,66 @@
+/* Estilos generales del formulario de checkout */
+.formulario {
+    border: 1px solid #ccc;
+    padding: 20px;
+    background-color: #f5f5f5;
+    border-radius: 10px;
+    box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.1);
+  }
+  
+  /* Estilos para los títulos del formulario */
+  .formulario h2 {
+    font-size: 1.5rem;
+    color: #ff69b4; /* Color rosa pastel */
+  }
+  
+  /* Estilos para los grupos de campos del formulario */
+  .form-group {
+    margin-bottom: 15px;
+  }
+  
+  .form-group label {
+    display: block;
+    font-size: 1rem;
+    margin-bottom: 5px;
+    color: #4d4d4d; /* Color gris */
+  }
+  
+  /* Estilos para los campos de entrada del formulario */
+  .form-group input[type="text"],
+  .form-group input[type="email"] {
+    width: 100%;
+    padding: 8px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    font-size: 1rem;
+  }
+  
+  /* Estilos para el botón de finalizar compra */
+  .formulario button[type="submit"] {
+    background-color: #ffb6c1; /* Color rosa pastel */
+    color: #fff;
+    border: none;
+    border-radius: 4px;
+    padding: 8px 16px;
+    font-size: 1rem;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+  }
+  
+  .formulario button[type="submit"]:hover {
+    background-color: #ff69b4; /* Color rosa pastel más oscuro al pasar el cursor */
+  }
+  
+  /* Estilos para el mensaje de error */
+  .formulario p.error-message {
+    color: red;
+    margin-top: 10px;
+  }
+  
+  /* Estilos para el mensaje de confirmación de la orden */
+  .order-confirmation {
+    font-size: 1.2rem;
+    color: #4d4d4d; /* Color gris */
+    margin-top: 20px;
+  }
+  

@@ -1,7 +1,61 @@
-import './NavBar.css'
+import CartWidget from "../CartWidget/CartWidget";
+import { Link, NavLink } from "react-router-dom";
+import './NavBar.css';
+
+
+const NavBar = () => {
+    return (
+        <header className='header'>
+            <Link to="/">
+                <h1 className='tituloTienda'>Tiendita Tesoritos B&S</h1>
+            </Link>
+
+            <nav className="navbar">
+                <ul>
+                    <li>
+                        <NavLink to="/categoria/juguetes">
+                            Juguetes
+                        </NavLink>
+                    </li>
+                    <li>
+                        <NavLink to="/categoria/masitas">
+                            Masitas
+                        </NavLink>
+                    </li>
+                    <li>
+                        <NavLink to="/categoria/organizadores">
+                            Organización
+                        </NavLink>
+                    </li>
+                </ul>
+             </nav>
+            <CartWidget />
+        </header>
+    )
+}
+
+export default NavBar
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+/*import './NavBar.css'
 import logo from '../../assets/logo.png'
-import CartWidget from '../CartWidget/CartWidget'
 import { NavLink, Link } from 'react-router-dom'
+import CartWidget from '../CartWidget/CartWidget'
 
 const NavBar = () => {
     return (
@@ -27,11 +81,15 @@ const NavBar = () => {
                             Organizacion
                         </NavLink>
                     </li>
-               </ul>
+                    <li> 
+                        <CartWidget />
+                    </li>
+               </ul> 
+              
             </nav>
-            < CartWidget />
+            
         </header>
     )
 }
 
-export default NavBar;
+export default NavBar;*/

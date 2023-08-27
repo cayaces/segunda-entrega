@@ -1,69 +1,58 @@
-import { createContext, useState, useEffect } from "react";
-import { collection, getDocs } from "firebase/firestore";
-import { db } from "../services/firebase/firebaseConfig";
+import { useState, createContext } from "react";
 
 export const CartContext = createContext({
-    cart: []
-})
+    cart: [],
+    total: 0,
+    cantidadTotal: 0,
+});
 
 export const CartProvider = ({ children }) => {
-    const [cart, setCart] = useState([])
-    const [products, setProducts] = useState([])
 
-    //PRODUCTOS
-    useEffect(() => {
-        const fProducts = async () => {
-            try {
-                const productsRef = collection(db, "products")
-                const datFirebase = await getDocs(productsRef)
-                const prodMap = datFirebase.docs.map((doc) => {
-                    return { ...doc.data(), id: doc.id }
-                })
-                setProducts(prodMap)
-            } catch (error) {
-                console.error('No es posible cargar este producto:', error)
+    const [cart, setCart] = useState([]);
+    const [total, setTotal] = useState(0);
+    const [cantidadTotal, setCantidadTotal] = useState(0);
 
-            }
-        };
-        fProducts();
+    const agregarProducto = (item, cantidad) => {
+        const productoExistente = cart.find((prod) => prod.id === item.id);
 
-    }, []);
-
-    const getProductById = (productId) => {
-        return products.find((product) => product.id === productId)
-    }
-
-    const getProductsByCategory = (category) => {
-        return products.filter((product) => product.cat === category)
-    }
-    //CARRO DE COMPRAS
-    const addItem = (item, quantity) => {
-        if (!isInCart(item.id)) {
-            setCart(prev => [...prev, { ...item, quantity: quantity }])
+        if (!productoExistente) {
+            setCart((prev) => [...prev, { item, cantidad }]);
+            setCantidadTotal((prev) => prev + cantidad);
+            setTotal((prev) => prev + item.precio * cantidad);
         } else {
-            console.error('Producto ya fue agregado')
+            const carritoActualizado = cart.map((prod) => {
+                if (prod.item.id === item.id) {
+                    return { ...prod, cantidad: prod.cantidad + cantidad };
+                } else {
+                    return prod;
+                }
+            });
+            setCart(carritoActualizado);
+            setCantidadTotal((prev) => prev + cantidad);
+            setTotal((prev) => prev + item.precio * cantidad);
         }
-    }
+    };
 
+    //funcion para eliminar producto
+    const eliminarProducto = (id) => {
+        const productoEliminado = cart.find((prod) => prod.item.id === id);
+        const carritoActualizado = cart.filter((prod) => prod.item.id !== id);
 
-    const removeItemCart = (itemId) => {
-        const cartUpdated = cart.filter(product => product.id !== itemId);
-        setCart(cartUpdated);
-    }
+        setCart(carritoActualizado);
+        setCantidadTotal((prev) => prev - productoEliminado.cantidad);
+        setTotal((prev) => prev - productoEliminado.item.precio * productoEliminado.cantidad);
+    };
 
-    const clearCart = () => {
-        setCart([])
-    }
-
-    const isInCart = (itemId) => {
-        return cart.some(product => product.id === itemId)
+    //Funcion para vaciar el carrito
+    const vaciarCarrito = () => {
+        setCart([]);
+        setCantidadTotal(0);
+        setTotal(0);
     }
 
     return (
-
-        <CartContext.Provider value={{ products, addItem, clearCart, getProductById, getProductsByCategory, cart, removeItemCart }}>
+        <CartContext.Provider value={{cart, total, cantidadTotal, agregarProducto, eliminarProducto, vaciarCarrito}}>
             {children}
         </CartContext.Provider>
     )
-
-}
+};

@@ -1,46 +1,29 @@
+//Aqui trabajo con el detalle de un solo producto
 import './ItemDetailContainer.css';
-import { useState, useEffect } from 'react';
-import { getProductById } from '../../asyncMock';
-import ItemDetail from '../ItemDetail/ItemDetail'
-import { useParams } from 'react-router-dom';
-import { getDoc, doc } from 'firebase/firestore';
-import { db } from '../../services/firebase/firebaseConfig';
+import { useState, useEffect } from "react";
+import ItemDetail from "../ItemDetail/ItemDetail";
+import { useParams } from "react-router-dom";
+import { getDoc, doc } from "firebase/firestore";
+import { db } from "../../services/firebase/firebaseConfig";
 
 const ItemDetailContainer = () => {
-    const [product, setProduct] = useState(null)
-    const [loading, setLoading] = useState(true)
-
-    const { itemId } = useParams()
+    const [product, setProduct] = useState(null);
+    const { idItem } = useParams();
 
     useEffect(() => {
-        setLoading(true)
+        const nuevoDoc = doc(db, "productos", idItem);
 
-        const docRef = doc(db, 'products', itemId)
-
-        getDoc(docRef)
-            .then(response => {
-                const data = response.data()
-                const productsAdapted = { id: response.id, ...data }
-                setProduct(productsAdapted)
+        getDoc(nuevoDoc)
+            .then((res) => {
+                const data = res.data();
+                const nuevoProducto = { id: res.id, ...data };
+                setProduct(nuevoProducto);
             })
-            .catch(error => {
-              console.log(error)
-            })
-            .finally(() => {
-                setLoading(false)
-            })
-
-        getProductById(itemId)
-            .then(response => {
-                setProduct(response);
-            })
-            .catch(error => {
-                console.error(error);
-            });
-    }, [itemId]);
+            .catch((error) => console.log(error));
+    }, [idItem]);
 
     return (
-        <div className='ItemDetailContainer'>
+        <div>
             <ItemDetail {...product} />
         </div>
     )

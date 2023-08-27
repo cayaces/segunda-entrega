@@ -1,0 +1,9 @@
+/* Estilos para el contenedor del carrito */
+.cart-container {
+    background-color: #f0f8ff; /* Color azul pastel */
+    border: 1px solid #ffb6c1; /* Color rosa pastel */
+    border-radius: 10px;
+    padding: 20px;
+    box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.1);
+  }
+  

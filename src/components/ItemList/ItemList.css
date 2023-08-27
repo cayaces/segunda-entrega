@@ -1,0 +1,58 @@
+/* Estilos para el contenedor que envuelve los elementos generados */
+.ListGroup {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+  }
+  
+  /* Estilos para los elementos generados por el mapeo */
+  .ListGroup .Item {
+    border: 1px solid #ffb6c1; /* Color rosa pastel */
+    background-color: #f0f8ff; /* Color azul pastel */
+    border-radius: 10px;
+    padding: 20px;
+    margin: 10px;
+    text-align: center;
+    box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.1);
+    width: 250px;
+  }
+  
+  /* Estilos para los títulos de los elementos */
+  .ListGroup .Item h2 {
+    font-size: 1.2rem;
+    margin: 10px 0;
+    color: #ff69b4; /* Color rosa pastel */
+  }
+  
+  /* Estilos para los precios de los elementos */
+  .ListGroup .Item p {
+    font-size: 1rem;
+    color: #4d4d4d; /* Color gris */
+    margin: 5px 0;
+  }
+  
+  /* Estilos para las imágenes de los elementos */
+  .ListGroup .Item img {
+    max-width: 100%;
+    height: auto;
+    margin-top: 10px;
+    border: 1px solid #ccc;
+    border-radius: 6px;
+  }
+  
+  /* Estilos para los enlaces de los elementos */
+  .ListGroup .Item a {
+    display: inline-block;
+    background-color: #ffb6c1; /* Color rosa pastel */
+    color: #fff;
+    text-decoration: none;
+    padding: 8px 16px;
+    border-radius: 4px;
+    margin-top: 10px;
+    transition: background-color 0.3s ease;
+  }
+  
+  .ListGroup .Item a:hover {
+    background-color: #ff69b4; /* Color rosa pastel más oscuro al pasar el cursor */
+  }
+  
